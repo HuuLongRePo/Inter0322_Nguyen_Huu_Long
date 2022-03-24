@@ -88,12 +88,13 @@
     ma_khach_hang INT,
     ma_dich_vu INT,
     CONSTRAINT fk_ma_nhan_vien FOREIGN KEY (ma_nhan_vien)
-        REFERENCES nhan_vien (ma_nhan_vien),
-    CONSTRAINT fk_ma_khach_hang FOREIGN KEY (ma_khach_hang)
-        REFERENCES khach_hang (ma_khach_hang),
+        REFERENCES nhan_vien (ma_nhan_vien) on delete cascade,
+    CONSTRAINT fk_ma_khach_hang FOREIGN KEY (ma_khach_hang) 
+        REFERENCES khach_hang (ma_khach_hang) on delete cascade,
     CONSTRAINT fk_ma_dich_vu FOREIGN KEY (ma_dich_vu)
-        REFERENCES dich_vu (ma_dich_vu)
+        REFERENCES dich_vu (ma_dich_vu) on delete cascade
 );
+
 		CREATE TABLE dich_vu_di_kem (
     ma_dich_vu_di_kem INT PRIMARY KEY,
     ten_dich_vu_di_kem VARCHAR(45),
@@ -107,9 +108,9 @@
     ma_dich_vu_di_kem INT,
     so_luong INT,
     CONSTRAINT fk_ma_hop_dong FOREIGN KEY (ma_hop_dong)
-        REFERENCES hop_dong (ma_hop_dong),
+        REFERENCES hop_dong (ma_hop_dong) ON DELETE CASCADE,
     CONSTRAINT fk_ma_dich_vu_di_kem FOREIGN KEY (ma_dich_vu_di_kem)
-        REFERENCES dich_vu_di_kem (ma_dich_vu_di_kem)
+        REFERENCES dich_vu_di_kem (ma_dich_vu_di_kem) ON DELETE CASCADE
 );
 
 
@@ -1249,33 +1250,31 @@
 
 		-- câu 16
 		DELETE FROM nhan_vien 
-		WHERE
+		WHERE ma_nhan_vien in
 			(SELECT 
-				ma_nhan_vien
+				nv.ma_nhan_vien
 			FROM
-				nhan_vien
-			
+				(select * from nhan_vien)  as nv
 			WHERE
-				ma_nhan_vien NOT IN (SELECT 
-					ma_nhan_vien
+				nv.ma_nhan_vien NOT IN (SELECT 
+					hop_dong.ma_nhan_vien 
 				FROM
 					hop_dong
 				
 				WHERE
-					YEAR(ngay_lam_hop_dong) >= 2019
-					AND YEAR(ngay_lam_hop_dong) <= 2021));
+					YEAR(hop_dong.ngay_lam_hop_dong) >= 2019
+					AND YEAR(hop_dong.ngay_lam_hop_dong) <= 2021) );
 
 
 
 		-- câu 17
 			UPDATE khach_hang 
 		SET 
-			ma_loai_khach = 1
+			ma_loai_khach = 2
 		WHERE
 			ma_khach_hang IN (SELECT 
-					khach_hang.ma_khach_hang
-				FROM
-					khach_hang
+					kh.ma_khach_hang
+				FROM (select * from khach_hang ) as kh
 						INNER JOIN
 					(SELECT 
 						ma_khach_hang, SUM(dich_vu.chi_phi_thue) AS tong_thanh_toan
@@ -1284,22 +1283,23 @@
 					INNER JOIN dich_vu ON hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
 					WHERE
 						YEAR(ngay_ket_thuc) = 2021
-					GROUP BY ma_khach_hang) AS hello ON hello.ma_khach_hang = khach_hang.ma_khach_hang
+					GROUP BY ma_khach_hang) AS hello ON hello.ma_khach_hang = kh.ma_khach_hang
 				WHERE
-					khach_hang.ma_loai_khach = 2
+					 kh.ma_loai_khach = 1
 						AND hello.tong_thanh_toan >= 10000000);
 -- câu 18: 
 			DELETE FROM khach_hang 
 		WHERE
-			ma_khach_hang = (SELECT 
+			ma_khach_hang in (SELECT 
 				ma_khach_hang
 			FROM
 				hop_dong
-			
 			WHERE
 				YEAR(ngay_ket_thuc) < 2021);
 			
 -- câu 19: 
+/* 19.	Cập nhật giá cho các lên gấp đôi.
+ dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2020 */
 			UPDATE dich_vu_di_kem 
 		SET 
 			gia = gia * 2
@@ -1307,7 +1307,7 @@
 			ma_dich_vu_di_kem IN (SELECT 
 					hello.ma_dich_vu_di_kem
 				FROM
-					dich_vu_di_kem
+					(select * from dich_vu_di_kem) as dich_vu_di_kem
 						INNER JOIN
 					(SELECT 
 						hop_dong_chi_tiet.ma_dich_vu_di_kem,
