@@ -2,6 +2,7 @@ package services.Impl;
 
 import models.Persons.Employee;
 import services.Interface.EmployeeService;
+import utils.ReadAndWrite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,8 @@ private  static List<Employee> employeeList = new ArrayList<>();
 private static Scanner scanner = new Scanner(System.in);
 
     @Override
-    public void display() {
+    public  void display() {
+        employeeList = (List<Employee>) ReadAndWrite.read("D:\\InternShip\\CodeGym InternShip\\Day_1\\Inter0322_Nguyen_Huu_Long\\ss02_java\\FuramaResort\\src\\data\\employee.csv");
         for (Employee employee:employeeList
              ) {
             System.out.println(employee.toString());
@@ -44,6 +46,7 @@ private static Scanner scanner = new Scanner(System.in);
         int salary = (int) scanner.nextDouble();
         Employee ne = new Employee(id,name,age,sex,adress,idCard,email,level,position,salary);
         employeeList.add(ne);
+        ReadAndWrite.write(employeeList,"D:\\InternShip\\CodeGym InternShip\\Day_1\\Inter0322_Nguyen_Huu_Long\\ss02_java\\FuramaResort\\src\\data\\employee.csv");
     }
 
     @Override

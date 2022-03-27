@@ -1,8 +1,10 @@
 package controllers;
 
+import models.Facility;
 import models.Persons.Employee;
 import services.Impl.CustomerServiceImpl;
 import services.Impl.EmployeeServiceImpl;
+import services.Impl.FacilityServiceImpl;
 
 import java.util.ConcurrentModificationException;
 import java.util.Scanner;
@@ -50,6 +52,12 @@ public class FuramaController {
                 "2. Display list customers get voucher\n" +
                 "3. Return main menu");
     }
+    public static void menuDisplayAddFacility() {
+        System.out.println("1. Add New Villa\n" +
+                "2. Add New House\n" +
+                "3. Add New Room\n" +
+                "4. Back to menu");
+    }
     public static void exit() {
         System.out.println("Kết thúc!!");
         System.exit(0);
@@ -57,6 +65,8 @@ public class FuramaController {
     public static int v;
     public static EmployeeServiceImpl ne = new EmployeeServiceImpl();
     public static CustomerServiceImpl nc = new CustomerServiceImpl();
+    public static FacilityServiceImpl nf = new FacilityServiceImpl() ;
+
     public static < e > void displayMainMenu() {
         boolean check = true;
         while (check) {
@@ -189,6 +199,38 @@ public class FuramaController {
                         System.out.println("Nhập Lỗi !!");
                     }
                     switch (v) {
+                        case 1:
+                        {
+                            nf.display();
+                            break;
+                        }
+                        case 2:
+                        {
+                            menuDisplayAddFacility();
+                            System.out.println("Vui lòng nhập: ");
+                            try {
+                                Scanner n1 = new Scanner(System.in);
+                                v = Integer.parseInt(String.valueOf(n1.nextInt()));
+                            } catch (Exception e) {
+                                System.out.println("Nhập Lỗi !!");
+                            }
+                            switch (v)
+                            {
+                                case 1:{
+                                    try {
+                                        nf.addNewVilla();
+                                    }catch (NumberFormatException e){
+                                        System.out.println(e);
+                                    }
+                                    break;
+                                }
+                                case 4:{
+                                    System.out.println("Màn hình chính!!");
+                                    break;
+                                }
+                            }
+                            break;
+                        }
                         case 4:
                         {
                             System.out.println("Màn hình chính!!!");
