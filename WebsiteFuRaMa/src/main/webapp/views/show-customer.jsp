@@ -64,7 +64,7 @@
         </div>
     </div>
 
-        <jsp:include page="layout/show-pagination.jsp"/>
-    </div>
+    <jsp:include page="layout/show-pagination.jsp"/>
+</div>
 </div>
 <jsp:include page="layout/footer.jsp"/>

@@ -3,20 +3,20 @@
     <form>
         <div class="form-group">
             <label for="idCustomer">Nhập Mã Khách Hàng</label>
-            <input type="number" class="form-control" id="idCustomer" placeholder="idCustomer">
+            <input type="number" class="form-control" id="idCustomer" name="idCustomer" placeholder="idCustomer">
         </div>
 
         <div class="form-group">
             <label for="nameCustomer">Nhập Tên Khách Hàng</label>
-            <input type="text" class="form-control" id="nameCustomer" placeholder="nameCustomer">
+            <input type="text" class="form-control" id="nameCustomer" name="idCustomer" placeholder="nameCustomer">
         </div>
         <div class="form-group">
             <label for="ageCustomer">Nhập Ngày Sinh</label>
-            <input type="date" class="form-control" id="ageCustomer" placeholder="ageCustomer">
+            <input type="date" class="form-control" id="ageCustomer" name="ageCustomer" placeholder="ageCustomer">
         </div>
         <div class="form-group">
             <label for="sexCustomer">Giới tính</label>
-            <select class="form-control" id="sexCustomer">
+            <select class="form-control" name="sexCustomer" id="sexCustomer">
                 <option>Nam</option>
                 <option>Nữ</option>
                 <option>Khác</option>
@@ -25,15 +25,15 @@
 
         <div class="form-group">
             <label for="adressCustomer">Nhập Địa Chỉ</label>
-            <input type="text" class="form-control" id="adressCustomer" placeholder="adressCustomer">
+            <input type="text" class="form-control" id="adressCustomer" name="adressCustomer" placeholder="adressCustomer">
         </div>
         <div class="form-group">
             <label for="idCard">Nhập idCard</label>
-            <input type="text" class="form-control" id="idCard" placeholder="idCard">
+            <input type="text" class="form-control" id="idCard" name="idCard" placeholder="idCard">
         </div>
         <div class="form-group">
             <label for="emailCustomer">Nhập Email</label>
-            <input type="email" class="form-control" id="emailCustomer" placeholder="emailCustomer">
+            <input type="email" class="form-control" id="emailCustomer" name="emailCustomer" placeholder="emailCustomer">
         </div>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
