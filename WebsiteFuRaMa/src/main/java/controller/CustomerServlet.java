@@ -52,7 +52,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
         }
         switch (action) {
             case "create":
-                response.sendRedirect("customerhdl.jsp");
+                response.sendRedirect(".jsp");
                 break;
             case "update":
                 goUpdate(request,response);
@@ -66,8 +66,9 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
 
     private void getCustomerList(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        System.out.println("Okii");
         request.setAttribute("listp", customerService.getCustomerList());
+        System.out.println("toi day roi");
 
         request.getRequestDispatcher("views/show-customer.jsp").forward(request, response);
 

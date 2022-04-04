@@ -48,10 +48,10 @@ public class EmployeeServlet extends HttpServlet {
         }
         switch (action){
             case "create":
-                response.sendRedirect("employeehdl.jsp");
+                response.sendRedirect(".jsp");
                 break;
             case "update":
-                response.sendRedirect("employeeEdit.jsp");
+                response.sendRedirect(".jsp");
             default:
                 getEmployeeList(request,response);
                 break;
@@ -61,7 +61,7 @@ public class EmployeeServlet extends HttpServlet {
 
         request.setAttribute("liste", employeeService.getEmployeeList());
         // Forward (Chuyển tiếp) yêu cầu, để hiển thị dữ liệu trên trang JSP.
-        request.getRequestDispatcher("/employee.jsp").forward(request, response);
+        request.getRequestDispatcher("/").forward(request, response);
     }
 
     private void createNewEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException {

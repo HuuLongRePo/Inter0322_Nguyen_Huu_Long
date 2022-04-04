@@ -1,140 +1,58 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: nhacp
-  Date: 3/30/2022
-  Time: 1:32 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql " %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<jsp:include page="view/head.jsp" />
-<body>
-<div class="app">
-  <jsp:include page="view/header.jsp" />
-  <div class="container-fluid" >
-    <div id="" class="row ">
-      <div class="col-sm-3 body_bg">
-        <ul class="nav flex-column">
-          <li class="nav-item nav_item">
-            <a class="nav-link nav_item active" href="/showEmployee">Nhân viên</a>
-          </li>
-          <li class="nav-item nav_item">
-            <a class="nav-link nav_item" href="/showCustomer">Khách hàng</a>
-          </li>
-          <li class="nav-item nav_item">
-            <a class="nav-link nav_item" href="#">Sản phẩm</a>
-          </li>
-        </ul>
-      </div>
-      <div class="col-9 pt-1 ">
-        <!--        Form thêm nhân viên        -->
-        <form class="form_input display-block">
-          <h2 class="text-center">Thêm mới nhân viên</h2>
-          <div class="form-group form_input row ">
-            <label for="inputNameEpl" class="col-sm-2 col-form-label">Họ Tên:</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" id="inputNameEpl" placeholder="Nhập họ tên nhân viên">
-            </div>
-            <label for="labelSexEpl" class="col-sm-2 col-form-label">Giới tính:</label>
-            <div class="col-sm-4">
-              <select class="form-control" id="labelSexEpl">
-                <option>--Danh sách lựa chọn--</option>
-                <option>Nam</option>
-                <option>Nữ</option>
-                <option>Khác</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group form_input row">
-            <label for="inputIdCardEpl" class="col-sm-2 col-form-label">CMND/CCCD:</label>
-            <div class="col-sm-4">
-              <input type="password" class="form-control" id="inputIdCardEpl" placeholder="Nhập CMND..">
-            </div>
-            <label for="inputEmailEpl" class="col-sm-2 col-form-label">Email:</label>
-            <div class="col-sm-4">
-              <input type="email" class="form-control" id="inputEmailEpl" placeholder="Nhập Email...">
-            </div>
-          </div>
-          <div class="form-group form_input row">
-            <label for="inputDateEpl" class="col-sm-2 col-form-label">Ngày sinh:</label>
-            <div class="col-sm-4">
-              <input type="date" class="form-control" id="inputDateEpl" placeholder="Nhập ngày sinh...">
-            </div>
-            <label for="inputSdtEpl" class="col-sm-2 col-form-label">Số điện thoại:</label>
-            <div class="col-sm-4">
-              <input type="tel" class="form-control" id="inputSdtEpl" placeholder="Nhập số điện thoại...">
-            </div>
-          </div>
-          <div class="form-group form_input row">
 
-            <label for="inputEdu" class="col-sm-2 col-form-label">Trình độ:</label>
-            <div class="col-sm-4">
-              <select class="form-control" id="inputEdu">
-                <option>--Danh sách lựa chọn--</option>
-                <option>Cao đẳng</option>
-                <option>Đại học</option>
-                <option>Sau đại học</option>
 
-              </select>
-            </div>
-            <label for="inputDivision" class="col-sm-2 col-form-label">Bộ phận:</label>
-            <div class="col-sm-4">
-              <select class="form-control" id="inputDivision">
-                <option>--Danh sách lựa chọn--</option>
-                <option>Sale-Marketing</option>
-                <option>Hành chính</option>
-                <option>Phục vụ</option>
-                <option>Quản lý</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group form_input row">
-            <label for="inputPosition" class="col-sm-2 col-form-label">Vị trí:</label>
-            <div class="col-sm-3">
-              <select class="form-control" id="inputPosition">
-                <option>--Danh sách lựa chọn--</option>
-                <option>Quản Lý</option>
-                <option>Nhân viên</option>
-              </select>
-            </div>
-            <label for="inputAddressEpl" class="col-sm-2 col-form-label">Địa chỉ:</label>
-            <div class="col-sm-5">
-              <input type="text" class="form-control" id="inputAddressEpl" placeholder="Nhập Địa chỉ...">
-            </div>
+ <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:include page="./views/layout/header.jsp"/>
+    <div class="row">
 
-          </div>
+        <div class="col-3">
+            <div class="nav flex-column nav-tabs" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link " id="v-pills-home-tab" data-toggle="tab" href="#v-pills-home" role="tab" aria-controls="home" aria-selected="true" >Home</a>
+                <a class="nav-link " id="v-pills-profile-tab" data-toggle="tab" href="#v-pills-profile" role="tab" aria-controls="home" aria-selected="true">Profile</a>
+                <a class="nav-link" id="v-pills-messages-tab" data-toggle="tab" href="#v-pills-messages" role="tab" >Messages</a>
+                <a class="nav-link" id="v-pills-settings-tab" data-toggle="tab" href="#v-pills-settings" role="tab" >Settings</a>
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="tab-content"  id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="home-tab">Helloo</div>
+                <div class="tab-pane fade show " id="v-pills-profile" role="tabpanel" aria-labelledby="profile-tab">Helloo1</div>
+                <div class="tab-pane fade show " id="v-pills-messages" role="tabpanel" >Helloo2</div>
+                <div class="tab-pane fade show " id="v-pills-settings" role="tabpanel">Helloo3</div>
+            </div>
+            <div class="col-9">
 
-          <button type="submit" class="btn btn-primary">Add Employee</button>
-        </form>
-      </div>
+                <p>
+                    Khu nghỉ dưỡng quy mô lớn nhất Đà Nẵng, không gian xanh an nhiên ôm trọn núi rừng.
+                    Bừng sáng đầy kiêu hãnh giữa núi rừng Đà Nẵng, Furama Villas & Resort tự hào trở thành biểu tượng du lịch mới, một thiên đường nghỉ dưỡng xanh có một không hai tại thành phố Đà Nẵng được bao bọc bởi hơn 2000ha rừng tự nhiên
+                    Chỉ cách Huế 1 giờ lái xe, Furama Villas & Resort tọa lạc ngay tại vị trí mặt đường Quốc Lộ 1A, cửa ngõ của du lịch vùng Miền Trung. Giữa núi rừng thiên nhiên ngút ngàn, từ Furama Villas & Resort dễ dàng kết nối đến các địa điểm du lịch nổi tiếng tại Đà Nẵng
+
+
+
+                    Hệ thống Villa có tầm nhìn ôm trọn núi rừng hùng vĩ, được trang bị đầy đủ tiện nghi, thiết kế riêng biệt, cùng nhiều tiện ích dịch vụ đẳng cấp khác sẽ mang đến không gian lý tưởng đáp ứng mọi nhu cầu cho du khách trong và ngoài nước
+                    Nhà hàng Sunrise (Bình Minh) với sức chứa trên 500 thực khách chuyên phục vụ các món ăn Âu, Á cùng các sản vật địa phương mang bản sắc Miền Trung
+
+
+
+                    Sân Teambuilding – sân cỏ thật với không gian rộng thoáng trên diện tích 5000m2 phù hợp nhiều loại hình hoạt động linh hoạt như vui chơi, sự kiện hay đại tiệc cho số lượng tối đa lên đến 1000 khách
+                    Bể bơi vô cực Furama Villas & Resort tọa lạc trên sườn núi mang tới cảm giác như thả mình giữa chốn bồng lai tiên cảnh của đất trời Miền Trung.
+
+
+
+                    Hệ thống Spa, Gym center theo chuẩn quốc tế, đội ngũ kỹ thuật viên được đào tạo chuyên nghiệp sẽ cho bạn những phương pháp trị liệu an toàn, những phút giây luyện tập hứng khởi
+                    Để kỳ nghỉ của quý khách sẽ là điểm nhấn khi đến với Đà Nẵng, Furama Villas & Resort còn mang đến các dịch vụ tiện ích như: phòng Karaoke, xe đạp leo núi, vô vàn các điểm thăm quan check in khác
+
+
+                </p>
+            </div>
+        </div>
     </div>
-  </div>
 
+<footer class="page-footer font-small blue">
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Xóa nhân viên!</h5>
-<%--          <button type="button" class="close" data-dismiss="modal" aria-label="Close">--%>
-<%--            <span aria-hidden="">&times;</span>--%>
-<%--          </button>--%>
-        </div>
-        <div class="modal-body">
-          <p>Bạn có thật sự muốn xóa</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-danger">Delete</button>
-        </div>
-      </div>
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-1">© 2020 Copyright:FuramaManagerment
     </div>
-  </div>
-  <jsp:include page="view/footer.jsp" />
-</div>
-
+    <!-- Copyright -->
+</footer>
 </body>
 </html>
